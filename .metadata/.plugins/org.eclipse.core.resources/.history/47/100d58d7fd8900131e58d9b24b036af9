@@ -1,0 +1,47 @@
+var exec = require("child_process").exec;
+
+function iniciar(response, request) {
+  console.log("Manipulador de petición 'iniciar' fue llamado.");
+  var postHTML = '<html><head><title>Post Example</title></head>' +
+  '<body>' +
+  '<form method="post">' +
+  'Your Fist Name: <input name="first_name"><br>' +
+  'Your Last Name: <input name="last_name"><br>' +
+  '<input type="submit">' +
+  '</form>' +
+  '</body></html>';
+  response.writeHead(200, {"Content-Type": "text/html"});
+  response.write(body);
+  response.end();
+}
+
+function subir(response, request) {
+	  console.log("Manipulador de petición 'subir' fue llamado.");
+	  response.writeHead(200, {"Content-Type": "text/html"});
+	  var body = "";
+	  req.on('data', function (chunk) {
+	    body += chunk;
+	  });
+	  req.on('end', function () {
+	    console.log('POSTed: ' + body);
+	 
+	    if (body != '')
+	    {
+	        var hash = splitter.formValues(body);
+	 
+	         console.log("input1 = " + hash["first_name"]);
+	         console.log("input2 = " + hash["last_name"]);
+	 
+	         res.writeHead(200);
+	         res.write('Hello ' + hash["first_name"] + ', ' + hash["last_name"] + '!');
+	         res.end();
+	         return;
+	    }
+	 
+	    res.writeHead(200);
+	    res.end(postHTML);
+	  response.end();
+}
+
+exports.iniciar = iniciar;
+exports.subir = subir;
