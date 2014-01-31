@@ -8,7 +8,8 @@ function iniciar(route, handle) {
 		ws.on('message', function(message) {
 			console.log('received: %s', message);
 		});
-		ws.send('something');
+		ws.send('te has conectado a mí');
+		//ws.terminate();
 	});
   console.log("Servidor Iniciado.");
 }
