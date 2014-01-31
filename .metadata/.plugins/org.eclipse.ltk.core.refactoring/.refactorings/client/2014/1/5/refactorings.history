@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;client/main/main.js&apos; to &apos;index.js&apos;" description="Rename resource &apos;main.js&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="main/main.js" name="index.js" stamp="1391185579165" updateReferences="true"/>
+</session>
