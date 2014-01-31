@@ -1,4 +1,8 @@
+# Created by http://www.gitignore.io
+
+### Node ###
 lib-cov
+lcov.info
 *.seed
 *.log
 *.csv
@@ -10,6 +14,40 @@ lib-cov
 pids
 logs
 results
+build
+.grunt
 
-npm-debug.log
 node_modules
+
+
+### Eclipse ###
+*.pydevproject
+.metadata
+.gradle
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
+
+# sbteclipse plugin 
+.target
+
+# TeXlipse plugin
+.texlipse
