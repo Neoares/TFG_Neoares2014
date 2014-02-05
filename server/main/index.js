@@ -7,4 +7,5 @@ handle["/"] = requestHandlers.iniciar;
 handle["/iniciar"] = requestHandlers.iniciar;
 handle["/subir"] = requestHandlers.subir;
 
-server.iniciar(router.route, handle);
+//server.iniciar(router.route, handle);
+server.iniciar();
