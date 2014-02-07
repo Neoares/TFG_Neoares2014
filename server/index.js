@@ -1,6 +1,6 @@
-var server = require("./server");
-var router = require("./router");
-var requestHandlers = require("./requestHandlers");
+var server = require("./assets/js/server");
+var router = require("./assets/js/router");
+var requestHandlers = require("./assets/js/requestHandlers");
 
 var handle = {};
 handle["/"] = requestHandlers.iniciar;
