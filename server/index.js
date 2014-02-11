@@ -8,4 +8,4 @@ handle["/iniciar"] = requestHandlers.iniciar;
 handle["/subir"] = requestHandlers.subir;
 
 //server.iniciar(router.route, handle);
-server.iniciar();
+server.init();
