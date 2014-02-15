@@ -49,9 +49,9 @@ function init(){
 			console.log("We are connected");
 			autoUpdateResources();
 		}
-		var playerCollection = db.collection('players');
-		playerCollection.drop();
-		newPlayer('testPlayer', playerCollection);
+		//var userCollection = db.collection('users');
+		//userCollection.drop();
+		//newPlayer('testPlayer', playerCollection);
 		//testModule.fillPlayers(playerCollection, player, ObjectID);
 	});
 }
