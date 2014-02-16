@@ -29,7 +29,7 @@ exports.create = function(req, res){
 	
 }
 
-exports.show = function(req,res){
+exports.show = function(req, res){
 	var player_name = req.params.name;
 	player.findOne({name: player_name}, function(err, doc){
 		if(!err && doc) res.json(200, doc);
@@ -38,7 +38,7 @@ exports.show = function(req,res){
 	});
 }
 
-exports.remove = function(req,res){
+exports.remove = function(req, res){
 	var player_name = req.body.name;
 	player.findOne({name: player_name}, function(err, doc){
 		if(!err && doc){
@@ -48,4 +48,9 @@ exports.remove = function(req,res){
 		else if(!err) res.json(404, { message: "Could not find player."});
 		else res.json(403, {message: "Could not delete player. " + err});
 	});
+}
+
+exports.update = function(req, res){
+	var player_name = req.body.name;
+	
 }

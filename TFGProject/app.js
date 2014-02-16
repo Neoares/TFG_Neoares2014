@@ -10,6 +10,7 @@ var http = require('http');
 var path = require('path');
 var db = require('./public/javascripts/mainDB');
 var player = require('./routes/player');
+var user = require('./routes/user');
 
 var app = express();
 
@@ -31,12 +32,13 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.list);
 app.get('/players', player.index);
 app.get('/players/:name', player.show);
 
 app.post('/playerCreate', player.create);
 app.post('/playerRemove', player.remove);
+
+app.post('/userCreate', user.create);
 
 db.init();
 
