@@ -12,7 +12,7 @@ function autoUpdateResources(){
 function init(){
 	mongoose.connect('mongodb://localhost:27017/test');
 	//autoUpdateResources();
-	//mongoose.connection.collections['playermodels'].drop(function(err){ if(err) console.log(err)});
+	mongoose.connection.collections['usermodels'].drop(function(err){ if(err) console.log(err)});
 	console.log('db init');
 }
 

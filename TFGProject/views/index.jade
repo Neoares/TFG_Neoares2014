@@ -1,5 +1,23 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+	h1= title
+	p Welcome to #{title}
+	h2 New Account
+	//input(type="text", name="username")
+	//input(type="text", name="password")
+	//input(type="text", name="mail")
+	//input(type="text", name="gamename")
+	form(action='/userCreate', method='post')
+		p name
+			input(type="text", name="username")
+		p password
+			input(type="text", name="password")
+		p mail
+			input(type="email", name="mail")
+		p gamename
+			input(type="text", name="gamename")
+		p
+			input(type="submit")
+		
+	
