@@ -19,5 +19,9 @@ block content
 			input(type="text", name="gamename")
 		p
 			input(type="submit")
-		
 	
+	form(action='/playerCreate', method='post')
+		p name
+			input(type="text", name="name")
+		p
+			input(type="submit", text="create player")
