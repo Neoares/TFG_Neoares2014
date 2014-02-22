@@ -1,31 +1,28 @@
 var mongoose = require('mongoose');
-var playerModel = require('../../models/player').player;
+var player = require('../../models/player').player;
 
 var time;
 
+/*
+ * Updates all resources from all players a quantity of
+ * ('resourcePerHour'/3600) each second
+ */
 function autoUpdateResources(){
-	time=setInterval(function(){		
-		/*player.find({}, 'wood', function(err, docs){
-			if(err) console.log("error en el find: " + err);
-			else if(!err && !docs) console.log("no hay players. error: " + err);
-			else{
-				docs.each(function(err, doc){
-					if(err) console.log("error en el each: " + err);
-					else{
-						doc.update({wood: wood+1}, function(err, query){
-							if(err) console.log("error en el update: " + err);
-						});
-					}
-				});
+	time=setInterval(function(){
+		player.find({}, function(err, data){
+			for(var i in data){
+				data[i].wood += data[i].woodPerHour/3600;
+				data[i].save();
 			}
-		});*/
-		playerModel.update({}, {$inc:{wood:1}}, function(err){
-			if(err) console.log("error al update: " + err);
 		});
 		console.log('updated resources');
 		},1000);
 }
 
+/*
+ * Initializes the DataBase
+ * 'connect' parameter format: 'mongodb://ip_address:port/database'.
+ */
 function init(){
 	mongoose.connect('mongodb://localhost:27017/test');
 	//mongoose.connection.collections['usermodels'].drop(function(err){ if(err) console.log(err)});

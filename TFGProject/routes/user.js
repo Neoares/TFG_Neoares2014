@@ -1,3 +1,7 @@
+/*
+ * This file contains methods designed for handle 'get' or 'post' requests from the browser
+ */
+
 var user = require('../models/user').user;
 
 exports.create = function(req, res){

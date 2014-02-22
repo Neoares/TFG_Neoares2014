@@ -6,10 +6,9 @@ var buildingSchema = new Schema({
 	level: { type: Number, required: true, default: 0},
 	scalingValue: {type: Number, required: true, default: 2},
 	woodCost: { type: Number, required: true},
-	
 });
 
-var player = mongoose.model('buildingModel', playerSchema);
+var building = mongoose.model('buildingModel', buildingSchema);
 
 module.exports = {
 		building: building

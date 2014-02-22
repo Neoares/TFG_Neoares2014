@@ -1,3 +1,7 @@
+/*
+ * This file contains methods designed for handle 'get' or 'post' requests from the browser
+ */
+
 var player = require('../models/player').player;
 
 exports.index = function(req, res) {
@@ -10,6 +14,10 @@ exports.index = function(req, res) {
 	});
 }
 
+
+/*
+ * 
+ */
 exports.create = function(req, res){
 	var player_name = req.body.name;
 	
