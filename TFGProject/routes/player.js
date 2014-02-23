@@ -14,10 +14,22 @@ exports.index = function(req, res) {
 	});
 }
 
+var building = require('../models/building').building;
+var buildingNames = ['edificio1','edificio2','etc'];
 
-/*
- * 
- */
+function initBuildings(){
+	var buildsArray = [];
+	for(var i in buildingNames){
+		console.log(i);
+		var newBuilding = new building();
+		newBuilding.name = buildingNames[i];
+		newBuilding.woodCost = 10000;
+		buildsArray.push(newBuilding);
+	}
+	return buildsArray;
+};
+
+
 exports.create = function(req, res){
 	var player_name = req.body.name;
 	
@@ -26,6 +38,7 @@ exports.create = function(req, res){
 			var newPlayer = new player();
 			
 			newPlayer.name = player_name;
+			newPlayer.buildings = initBuildings();
 			newPlayer.save(function(err){
 				if(!err) res.json(201, {message: "player created with name: " + newPlayer.name});
 				else res.json(500, {message: "could not create player, error: " + err});
