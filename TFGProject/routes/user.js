@@ -3,6 +3,7 @@
  */
 
 var user = require('../models/user').user;
+var playerRoute = require('./player');
 
 exports.create = function(req, res){
 	var usernameLower = req.body.username.toLowerCase();
@@ -25,6 +26,7 @@ exports.create = function(req, res){
 						if(!err) res.json(201, {message: "user created with name: " + newUser.username});
 						else res.json(500, {message: "could not create user, error: " + err});
 					});
+					playerRoute.createByUser(newUser.gamename);	//calls the createByUser method in 'player.js' route.
 				}
 				else if(!err) res.json(403, {message: "player with that name already exists, please update instead of create or create a new workout with a different name."});
 				else res.json(500, {message: err});
