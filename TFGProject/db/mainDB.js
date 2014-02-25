@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var player = require('../../models/player').player;
+var player = require('../models/player').player;
 
 var time;
 

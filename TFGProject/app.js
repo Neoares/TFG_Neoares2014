@@ -4,7 +4,7 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
-var db = require('./public/javascripts/mainDB');
+var db = require('./db/mainDB');
 var player = require('./routes/player');
 var user = require('./routes/user');
 
@@ -19,8 +19,8 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
-app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(app.router);
 
 // development only
 if ('development' == app.get('env')) {
