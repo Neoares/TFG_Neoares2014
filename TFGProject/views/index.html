@@ -14,10 +14,10 @@
     <title>Signin Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/stylesheets/signin.css" rel="stylesheet">
+    <link href="stylesheets/signin.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -33,14 +33,27 @@
 
     <div class="container">
 
-      <form class="form-signin" role="form">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="email" class="form-control" placeholder="Email address" required autofocus>
-        <input type="password" class="form-control" placeholder="Password" required>
+      <form class="form-signin left" role="form">
+        <h2 class="form-signin-heading">Entrar</h2>
+        <input type="text" class="form-control first" placeholder="Nombre de usuario" required autofocus>
+        <input type="password" class="form-control last" placeholder="Contraseña" required>
         <label class="checkbox">
-          <input type="checkbox" value="remember-me"> Remember me
+          <input type="checkbox" value="remember-me"> Recuerdame.
         </label>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Jugar</button>
+			  <a href="">Contraseña olvidada.</a>
+      </form>
+	  
+	  <form class="form-signin right" role="form" action="/userCreate" method="post">
+        <h2 class="form-signin-heading">Eres nuevo?</h2>
+		<input type="text" class="form-control first" placeholder="Nombre de usuario" name="username" required>
+		<input type="password" class="form-control middle" placeholder="Contraseña" name="password" required>
+		<input type="password" class="form-control middle" placeholder="Confirmar contraseña" name="password2" required>
+        <input type="email" class="form-control last" placeholder="Correo electrónico" name="mail" required>
+        <label class="checkbox">
+          <input type="checkbox" value=1 name="termsAccepted"> Acepto los <a href="">T&Cs</a>.
+        </label>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Registrarse</button>
       </form>
 
     </div> <!-- /container -->

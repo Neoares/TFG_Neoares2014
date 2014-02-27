@@ -28,13 +28,31 @@ body {
 .form-signin .form-control:focus {
   z-index: 2;
 }
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
+
+input.first{
+  margin-bottom: 0px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
+
+input.last{
+  margin-bottom: 0px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+input.middle{
+  margin-bottom: 0px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+form.left{
+	float:left;
+}
+
+form.right{
+	float:right;
 }

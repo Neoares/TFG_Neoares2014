@@ -6,8 +6,6 @@ var userSchema = new Schema({
 	usernameLower: { type: String, required: true, trim: true, index: { unique: true } },
 	password: { type: String, required: true, trim: true},
 	mail: { type: String, required: true, trim: true},
-	gamename: {type: String, required: true, trim: true},
-	gamenameLower: {type: String, required: true, trim: true, index: {unique: true} }
 });
 
 var user = mongoose.model('userModel', userSchema);
