@@ -16,7 +16,6 @@ exports.create = function(req, res){
 			newUser.usernameLower = usernameLower;
 			newUser.password = req.body.password;
 			newUser.mail = req.body.mail;
-			
 					
 			newUser.save(function(err){
 				if(!err) res.json(201, {message: "user created with name: " + newUser.username});
@@ -26,6 +25,16 @@ exports.create = function(req, res){
 		}
 		else if(!err) res.json(403, {message: "user with that name already exists, please update instead of create or create a new workout with a different name."});
 		else res.json(500, {message: err});
+	});
+	
+}
+
+exports.check = function(req, res){
+	user.findOne({usernameLower:req.body.username.toLowerCase()}, function(err, doc){
+		if(!err && doc){
+			if(doc.password==req.body.password) res.render('./game/main', { title: 'Main' });
+			
+		}
 	});
 	
 }

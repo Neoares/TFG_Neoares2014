@@ -1,10 +1,10 @@
 
 var express = require('express');
 var routes = require('./routes');
-var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 var db = require('./db/mainDB');
+var index = require('./routes/index');
 var player = require('./routes/player');
 var user = require('./routes/user');
 
@@ -40,6 +40,8 @@ app.post('/playerCreate', player.create);
 app.post('/playerRemove', player.remove);
 
 app.post('/userCreate', user.create);
+
+app.post('/enterGame', user.check);
 
 db.init();
 
