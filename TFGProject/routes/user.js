@@ -18,7 +18,7 @@ exports.create = function(req, res){
 			newUser.mail = req.body.mail;
 					
 			newUser.save(function(err){
-				if(!err) res.json(201, {message: "user created with name: " + newUser.username});
+				if(!err) res.render('./game/main', {username: req.body.username});
 				else res.json(500, {message: "could not create user, error: " + err});
 			});
 			playerRoute.createByUser(newUser.username);	//calls the createByUser method in 'player.js' route.
@@ -32,9 +32,11 @@ exports.create = function(req, res){
 exports.check = function(req, res){
 	user.findOne({usernameLower:req.body.username.toLowerCase()}, function(err, doc){
 		if(!err && doc){
-			if(doc.password==req.body.password) res.render('./game/main', { title: 'Main' });
-			
+			if(doc.password==req.body.password) res.render('./game/main', { username: req.body.username});
+			else console.log('contraseña no válida');
 		}
+		else console.log('cuenta no existente');
 	});
+	//res.render('./game/main', { title: 'Main' })
 	
 }
