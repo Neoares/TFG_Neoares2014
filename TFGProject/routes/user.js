@@ -5,6 +5,11 @@
 var user = require('../models/user').user;
 var playerRoute = require('./player');
 
+
+/*
+ * Creates a new user.
+ * This method is called by the register form.
+ */
 exports.create = function(req, res){
 	var usernameLower = req.body.username.toLowerCase();
 	
@@ -18,7 +23,10 @@ exports.create = function(req, res){
 			newUser.mail = req.body.mail;
 					
 			newUser.save(function(err){
-				if(!err) res.render('./game/main', {username: req.body.username});
+				if(!err){
+					req.session.name = req.body.username;
+					res.redirect('/game');
+				}
 				else res.json(500, {message: "could not create user, error: " + err});
 			});
 			playerRoute.createByUser(newUser.username);	//calls the createByUser method in 'player.js' route.
@@ -29,10 +37,18 @@ exports.create = function(req, res){
 	
 }
 
+
+/*
+ * Checks if the login data is OK.
+ * This method is called by the signin form.
+ */
 exports.check = function(req, res){
 	user.findOne({usernameLower:req.body.username.toLowerCase()}, function(err, doc){
 		if(!err && doc){
-			if(doc.password==req.body.password) res.render('./game/main', { username: req.body.username});
+			if(doc.password==req.body.password){
+				req.session.name = doc.username;
+				res.redirect('/game');
+			}
 			else console.log('contraseña no válida');
 		}
 		else console.log('cuenta no existente');
