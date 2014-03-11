@@ -25,7 +25,7 @@ exports.create = function(req, res){
 			newUser.save(function(err){
 				if(!err){
 					req.session.name = req.body.username;
-					res.redirect('/game');
+					res.redirect('/game/index');
 				}
 				else res.json(500, {message: "could not create user, error: " + err});
 			});
@@ -47,7 +47,7 @@ exports.check = function(req, res){
 		if(!err && doc){
 			if(doc.password==req.body.password){
 				req.session.name = doc.username;
-				res.redirect('/game');
+				res.redirect('/game/index');
 			}
 			else console.log('contraseña no válida');
 		}

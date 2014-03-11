@@ -1,0 +1,22 @@
+html {
+    min-height: 100%;
+    position: relative;
+}
+body {
+    margin-bottom: 60px;
+}
+#footer {
+    background-color: #F5F5F5 !important;
+    bottom: 0 !important;
+    height: 60px !important;
+    position: absolute !important;
+    width: 100% !important;
+}
+.container {
+    max-width: 680px;
+    padding: 0 15px;
+    width: auto;
+}
+.container .text-muted {
+    margin: 20px 0;
+}

@@ -46,15 +46,19 @@ if ('development' == app.get('env')) {
  * app.method(route, action);
  */
 app.get('/', routes.index);
-app.get('/players', player.index);
-app.get('/players/:name', player.show);
-app.get('/game', game.index);
+//app.get('/players', player.index);
+//app.get('/players/:name', player.show);
+app.get('/signUp', function(req,res){res.render('signup')});
+
+app.get('/game/index', game.index);	//go to the main game page
+app.get('/game/buildings', game.buildings)
+app.get('/game/research', game.research);
+app.get('/game/mercenaries', game.mercenaries);
 
 app.post('/playerCreate', player.create);
 app.post('/playerRemove', player.remove);
 
 app.post('/userCreate', user.create);
-
 app.post('/enterGame', user.check);
 
 db.init();

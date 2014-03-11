@@ -1,27 +1,40 @@
-﻿extends layout
-
-block content
-	h1= title
-	p Welcome to #{title}
-	h2 New Account
-	//input(type="text", name="username")
-	//input(type="text", name="password")
-	//input(type="text", name="mail")
-	//input(type="text", name="gamename")
-	form(action='/userCreate', method='post')
-		p name
-			input(type="text", name="username")
-		p password
-			input(type="text", name="password")
-		p mail
-			input(type="email", name="mail")
-		p gamename
-			input(type="text", name="gamename")
-		p
-			input(type="submit")
-	
-	form(action='/playerCreate', method='post')
-		p name
-			input(type="text", name="name")
-		p
-			input(type="submit", text="create player")
+﻿html(lang="en")
+	head
+		meta(charset='ISO-8859-1')
+		meta(http-equiv="X-UA-Compatible" content="IE=edge")
+		meta(name="viewport" content="width=device-width initial-scale=1")
+		meta(name="description" content="")
+		meta(name="author" content="")
+		link(rel="shortcut icon" href="http://getbootstrap.com/assets/ico/favicon.ico")
+		
+		title Main Page
+		
+		link(href="stylesheets/bootstrap.min.css" rel="stylesheet")
+		link(href="stylesheets/signin.css" rel="stylesheet")
+		
+		script(type="text/javascript" src="javascripts/userControl.js")
+		
+	body
+		div(class="container")
+			form(class="form-signin left" role="form" action="/enterGame" method="post")
+				h2(class="form-signin-heading") Entrar
+				input(type="text" class="form-control first" placeholder="Nombre de usuario" name="username" required autofocus)
+				input(type="password" class="form-control last" placeholder="Contraseña" name="password" required)
+				label(class="checkbox")
+					input(type="checkbox" value="remember-me")
+					| Recuerdame.
+				button(class="btn btn-lg btn-primary btn-block" type="submit") Jugar
+				a(href="") Contraseña olvidada.
+		
+			form(class="form-signin right", role="form", action="/userCreate", method="post", onsubmit="return (checkRegisterForm(this) && false);")
+				h2(class="form-signin-heading") Eres nuevo?
+				input(type="text" class="form-control first" placeholder="Nombre de usuario" name="username" required)
+				input(type="password" class="form-control middle" placeholder="Contraseña" name="password" required)
+				input(type="password" class="form-control middle" placeholder="Confirmar contraseña" name="password2" required)
+				input(type="email" class="form-control last" placeholder="Correo electrónico" name="mail" required)
+				label(class="checkbox")
+					input(type="checkbox" value=1 name="termsAccepted" required)
+					| Acepto los
+					a(href="") T&Cs
+					| .
+				button(class="btn btn-lg btn-primary btn-block" type="submit") Registrarse

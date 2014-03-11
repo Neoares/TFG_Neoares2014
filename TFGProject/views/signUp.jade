@@ -1,0 +1,52 @@
+html(lang="en")
+	head
+		meta(charset='ISO-8859-1')
+		meta(http-equiv="X-UA-Compatible", content="IE=edge")
+		meta(name="viewport", content="width=device-width, initial-scale=1")
+		meta(name="description", content="")
+		meta(name="author", content="")
+		link(rel="shortcut icon", href="http://getbootstrap.com/assets/ico/favicon.ico")
+		
+		title Game Page
+		
+		link(href="stylesheets/bootstrap.min.css", rel="stylesheet")
+		link(href="stylesheets/justified-nav.css" rel="stylesheet")
+		link(href="stylesheets/signin.css" rel="stylesheet")
+		
+	
+	body
+		.container
+			.masthead
+				h3(class="text-muted") Logo
+				ul.nav.nav-justified
+					li.active
+						a(href='#') Home
+					li
+						a(href='#') Projects
+					li
+						a(href='#') Services
+					li
+						a(href='#') Downloads
+					li
+						a(href='#') About
+					li
+						a(href='#') Contact
+			
+			.row.center
+				.div(align="center")
+					form(class="form-signin" role="form" action="/userCreate" method="post" onsubmit="return (checkRegisterForm(this) && false);")
+						h2(class="form-signin-heading" align="center") Register
+						input(type="text" class="form-control first" placeholder="Username" name="username" required)
+						input(type="password" class="form-control middle" placeholder="Password" name="password" required)
+						input(type="password" class="form-control middle" placeholder="Confirm password" name="password2" required)
+						input(type="email" class="form-control last" placeholder="Email" name="mail" required)
+						label(class="checkbox")
+							input(type="checkbox" value=1 name="termsAccepted" required)
+							| I accept the
+							a(href="") T&Cs
+							| .
+						button(class="btn btn-lg btn-primary btn-block" type="submit") Register
+			
+			.footer
+				p &copy; Company 2014
+			
