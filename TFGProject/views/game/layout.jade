@@ -1,0 +1,40 @@
+html(lang="en")
+	head
+		meta(charset='ISO-8859-1')
+		meta(http-equiv="X-UA-Compatible", content="IE=edge")
+		meta(name="viewport", content="width=device-width, initial-scale=1")
+		meta(name="description", content="")
+		meta(name="author", content="")
+		link(rel="shortcut icon", href="http://getbootstrap.com/assets/ico/favicon.ico")
+		
+		title Game Page
+		
+		link(href="../stylesheets/bootstrap.min.css", rel="stylesheet")
+		link(href="../stylesheets/justified-nav.css" rel="stylesheet")
+		
+		block topMenu
+			-var selected = 'Home';
+
+		-var menu = { 'Home': '/game/index', 'Buildings': '/game/buildings', 'Research': '/game/research', 'Mercenaries': '/game/mercenaries', 'About': '#', 'Contact': '#' };
+		
+	
+	body
+		.container
+			.masthead
+				.topInfo
+					h3(class="text-muted") Hi, #{username}. You have #{resources.wood} wood.
+				ul.nav.nav-justified
+					each val, key in menu
+						if selected == key
+							li.active
+								a(href=val)= key
+						else
+							li
+								a(href=val)= key
+	
+			
+			block content
+			
+			.footer
+				p &copy; Company 2014
+			

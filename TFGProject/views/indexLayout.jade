@@ -1,0 +1,39 @@
+html(lang="en")
+	head
+		meta(charset='ISO-8859-1')
+		meta(http-equiv="X-UA-Compatible", content="IE=edge")
+		meta(name="viewport", content="width=device-width, initial-scale=1")
+		meta(name="description", content="")
+		meta(name="author", content="")
+		link(rel="shortcut icon", href="http://getbootstrap.com/assets/ico/favicon.ico")
+		
+		title Game Page
+		
+		link(href="stylesheets/bootstrap.min.css", rel="stylesheet")
+		link(href="stylesheets/justified-nav.css" rel="stylesheet")
+		link(href="stylesheets/signin.css" rel="stylesheet")
+		
+		block topMenu
+			-var selected = 'Home';
+
+		-var menu = { 'Home': '/', 'Sign Up': '/signUp', 'dfgdfg': '#', 'asda': '#', 'About': '#', 'Contact': '#' };
+		
+	
+	body
+		.container
+			.masthead
+				h3(class="text-muted") Logo
+				ul.nav.nav-justified
+					each val, key in menu
+						if selected == key
+							li.active
+								a(href=val)= key
+						else
+							li
+								a(href=val)= key
+
+
+			block content
+			
+			.footer
+				p &copy; Company 2014
