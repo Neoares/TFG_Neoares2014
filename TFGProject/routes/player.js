@@ -3,6 +3,7 @@
  */
 
 var player = require('../models/player').player;
+var initJson = require('../models/init').init;
 
 exports.index = function(req, res) {
 	player.find({}, function(err, docs){
@@ -12,41 +13,6 @@ exports.index = function(req, res) {
 			res.json(500, { message: err });
 		}
 	});
-}
-
-var building = require('../models/building').building;
-var research = require('../models/research').research;
-var buildingNames = ['edificio1','edificio2','etc'];	//names of the buildings
-var researchNames = ['research1', 'research2', 'etc'];	//names of the researches
-
-/*
- * Returns an array of building models.
- * Used to fill the player buildings for the first time.
- */
-function initBuildings(){
-	var buildsArray = [];
-	for(var i in buildingNames){
-		var newBuilding = new building();
-		newBuilding.name = buildingNames[i];
-		newBuilding.woodCost = 10000;
-		buildsArray.push(newBuilding);
-	}
-	return buildsArray;
-};
-
-/*
- * Returns an array of research models.
- * Used to fill the player researches for the first time.
- */
-function initResearchs(){
-	var researchArray = [];
-	for (var i in researchNames){
-		var newResearch = new research();
-		newResearch.name = researchNames[i];
-		newResearch.woodCost = 20000;
-		researchArray.push(newResearch);
-	}
-	return researchArray;
 }
 
 /*
@@ -60,8 +26,6 @@ exports.create = function(req, res){
 			var newPlayer = new player();
 			
 			newPlayer.name = player_name;
-			newPlayer.buildings = initBuildings();
-			newPlayer.researches = initResearchs();
 			newPlayer.save(function(err){
 				if(!err) res.json(201, {message: "player created with name: " + newPlayer.name});
 				else res.json(500, {message: "could not create player, error: " + err});
@@ -80,8 +44,8 @@ exports.create = function(req, res){
 exports.createByUser = function(name){
 	var newPlayer = new player();
 	newPlayer.name = name;
-	newPlayer.buildings = initBuildings();
-	newPlayer.researches = initResearchs();
+	newPlayer.buildings = initJson.buildings;
+	newPlayer.researches = initJson.researches;
 	newPlayer.save(function(err){
 		if(err) console.log(err);
 		/*if(!err) res.json(201, {message: "player created with name: " + newPlayer.name});

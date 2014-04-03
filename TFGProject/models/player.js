@@ -13,7 +13,6 @@ var playerSchema = new Schema({
 		woodPerHour: { type: Number, required: true, default: 40},
 		stonePerHour: { type: Number, required: true, default: 20},
 		ironPerHour: { type: Number, required: true, default: 0},
-		cerealPerHour: { type: Number, required: true, default: 0}
 	},
 	buildings: { type: Array, required: true, default: []},
 	researches: { type: Array, required: true, default: []}

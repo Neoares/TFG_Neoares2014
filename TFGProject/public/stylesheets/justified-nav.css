@@ -98,12 +98,31 @@ body {
 	margin:auto;
 }
 
-.tableContent .main{
-	margin:5px;
+.main{
+	margin:5;
 }
 
-.tableContent .description{
-	margin:5px;
+.description{
+	clear:both;
+	margin:5;
 	border-top: 1px solid #EEE;
 	text-align:justify;
+}
+
+.image{
+	float:left;
+}
+
+.content{
+	margin: 0 0 0 5;
+	float:left;
+}
+
+.name{
+	color:red;
+	font-weight:bold;
+}
+
+p {
+    margin: 5;
 }
