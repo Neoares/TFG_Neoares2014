@@ -14,6 +14,20 @@ exports.index = function (req, res) {
 	});
 }
 
+exports.resources = function (req, res) {
+	playerDB.findOne({name:req.session.name}, function(err, doc){
+		if(!err && doc){
+			resources = doc.resources;
+			resourceBuildings = doc.res;
+			resources['wood'] = Math.floor(resources['wood']);
+			resources['stone'] = Math.floor(resources['stone']);
+			resources['iron'] = Math.floor(resources['iron']);
+			resources['cereal'] = Math.floor(resources['cereal']);
+			var render = res.render('./game/resources', {username:req.session.name, resources:resources, resourceBuildings:resourceBuildings});
+		}
+	});
+}
+
 exports.buildings = function(req,res){
 	playerDB.findOne({name:req.session.name}, function(err, doc){
 		if(!err && doc){

@@ -50,8 +50,10 @@ app.get('/', routes.index);
 //app.get('/players/:name', player.show);
 app.get('/signUp', function(req,res){res.render('signup')});
 
+app.get('/game', game.index);
 app.get('/game/index', game.index);	//go to the main game page
-app.get('/game/buildings', game.buildings)
+app.get('/game/resources', game.resources);
+app.get('/game/buildings', game.buildings);
 app.get('/game/research', game.research);
 app.get('/game/mercenaries', game.mercenaries);
 

@@ -10,7 +10,6 @@ var buildingSchema = new Schema({
 		stone: { type:Number, required:true, default:0},
 		iron: {type:Number, required:true, default:0}
 	},
-	type: { type: Number, required: true}
 });
 
 var building = mongoose.model('buildingModel', buildingSchema);

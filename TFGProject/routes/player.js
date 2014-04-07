@@ -46,6 +46,7 @@ exports.createByUser = function(name){
 	newPlayer.name = name;
 	newPlayer.buildings = initJson.buildings;
 	newPlayer.researches = initJson.researches;
+	newPlayer.res = initJson.res;
 	newPlayer.save(function(err){
 		if(err) console.log(err);
 		/*if(!err) res.json(201, {message: "player created with name: " + newPlayer.name});

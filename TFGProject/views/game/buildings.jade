@@ -18,12 +18,44 @@ block content
 										.p.name #{building.name}
 										table(style="margin:5 0;")
 											tr
-												td(colspan="2")
-													.p Subir a nivel x
+												td
+													.p Build time: 
+												td
+													.p 6h
+										.p <br>
+										table.centered(style="margin:5 0;")
 											tr
-												td
-													.p hola
-												td
-													.p adios
+												if building.costs.wood!=0
+													td.res_table
+														img.border(src="../../images/resources/wood.png" alt="wood_res" width="50" height="40")
+												if building.costs.stone!=0
+													td.res_table
+														img.border(src="../../images/resources/stone.png" alt="stone_res" width="50" height="40")
+												if building.costs.iron!=0
+													td.res_table
+														img.border(src="../../images/resources/iron.png" alt="iron_res" width="50" height="40")
+												td.res_table
+													a(href="#")
+														img(src="../../images/buttons/upgrade.png")
+											tr
+												if building.costs.wood!=0
+													td
+														if building.costs.wood > resources.wood
+															.p.red #{building.costs.wood}
+														else
+															.p #{building.costs.wood}
+												if building.costs.stone!=0
+													td
+														if building.costs.stone > resources.stone
+															.p.red #{building.costs.stone}
+														else
+															.p #{building.costs.stone}
+												if building.costs.iron!=0
+													td
+														if building.costs.iron > resources.iron
+															.p.red #{building.costs.iron}
+														else
+															.p #{building.costs.iron}
+															
 								.description
-									.p hola
+									.p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non congue est. Sed quis felis a mi dignissim viverra et vitae elit. Donec porttitor volutpat lacus iaculis commodo. Duis quis vestibulum tellus, ac blandit est. Phasellus eget leo ornare, consequat turpis quis, adipiscing turpis. Etiam consequat ante quis fermentum convallis. 

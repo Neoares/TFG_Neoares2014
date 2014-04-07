@@ -14,6 +14,7 @@ var playerSchema = new Schema({
 		stonePerHour: { type: Number, required: true, default: 20},
 		ironPerHour: { type: Number, required: true, default: 0},
 	},
+	res: {type: Array, required:true, default: []},
 	buildings: { type: Array, required: true, default: []},
 	researches: { type: Array, required: true, default: []}
 });

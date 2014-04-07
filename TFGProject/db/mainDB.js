@@ -11,36 +11,37 @@ var fs = require('fs');
 function autoUpdateResources(){
 	time=setInterval(function(){
 		player.find({}, 'resources resourcesPerHour', function(err, docs){
-			if(docs){
+			if(docs.length==0)return;
 				for(var i in docs){
-					console.log(docs[i]);
-					docs[i].resources.wood += doc[i].resourcesPerHour.woodPerHour/3600;
-					docs[i].resources.stone += doc[i].resourcesPerHour.stonePerHour/3600;
-					docs[i].resources.iron += doc[i].resourcesPerHour.ironPerHour/3600;
+					docs[i].resources.wood += docs[i].resourcesPerHour.woodPerHour/3600;
+					docs[i].resources.stone += docs[i].resourcesPerHour.stonePerHour/3600;
+					docs[i].resources.iron += docs[i].resourcesPerHour.ironPerHour/3600;
 				}
 				docs[i].save();
-			}
 		});
 		console.log('updated resources');
 		},1000);
 }
 
+/*
+ * Deletes the user and player tables in the database.
+ */
 function resetDB(){
 	mongoose.connection.collections['usermodels'].drop(function(err){ if(err) console.log(err)});
 	mongoose.connection.collections['playermodels'].drop(function(err){ if(err) console.log(err)});
 }
 
 /*
- * Initializes the DataBase
+ * Initializes the DataBase.
  * 'connect' parameter format: 'mongodb://ip_address:port/database'.
  */
 function init(){
 	mongoose.connect('mongodb://localhost:27017/test', function(err){
 		if(err) console.log('error attempting to connect to database: ' + err);
 		else{
-			resetDB();
+			//resetDB();
 			console.log('db init');
-			//autoUpdateResources();
+			autoUpdateResources();
 		}
 	});
 
