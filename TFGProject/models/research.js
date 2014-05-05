@@ -2,6 +2,7 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 var researchSchema = new Schema({
+	id: {type: String, requried: true},
 	name: { type: String, required: true, trim: true, index: { unique: true } },
 	level: { type: Number, required: true, default: 0},
 	scalingValue: {type: Number, required: true, default: 2},

@@ -19,7 +19,7 @@ function autoUpdateResources(){
 				}
 				docs[i].save();
 		});
-		console.log('updated resources');
+		//console.log('resources updated');
 		},1000);
 }
 
@@ -29,6 +29,9 @@ function autoUpdateResources(){
 function resetDB(){
 	mongoose.connection.collections['usermodels'].drop(function(err){ if(err) console.log(err)});
 	mongoose.connection.collections['playermodels'].drop(function(err){ if(err) console.log(err)});
+	mongoose.connection.collections['buildingmodels'].drop(function(err){ if(err) console.log(err)});
+	mongoose.connection.collections['researchmodels'].drop(function(err){ if(err) console.log(err)});
+	console.log("DATABASE RESTARTED");
 }
 
 /*
@@ -39,7 +42,7 @@ function init(){
 	mongoose.connect('mongodb://localhost:27017/test', function(err){
 		if(err) console.log('error attempting to connect to database: ' + err);
 		else{
-			//resetDB();
+			resetDB();
 			console.log('db init');
 			autoUpdateResources();
 		}

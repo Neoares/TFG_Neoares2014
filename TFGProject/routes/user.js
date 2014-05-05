@@ -21,15 +21,16 @@ exports.create = function(req, res){
 			newUser.usernameLower = usernameLower;
 			newUser.password = req.body.password;
 			newUser.mail = req.body.mail;
-					
+			
 			newUser.save(function(err){
 				if(!err){
+					playerRoute.createByUser(newUser.username,res);	//calls the createByUser method in 'player.js' route.
 					req.session.name = req.body.username;
 					res.redirect('/game/index');
 				}
 				else res.json(500, {message: "could not create user, error: " + err});
 			});
-			playerRoute.createByUser(newUser.username);	//calls the createByUser method in 'player.js' route.
+			
 		}
 		else if(!err) res.json(403, {message: "user with that name already exists, please update instead of create or create a new workout with a different name."});
 		else res.json(500, {message: err});
@@ -49,9 +50,16 @@ exports.check = function(req, res){
 				req.session.name = doc.username;
 				res.redirect('/game/index');
 			}
-			else console.log('contraseña no válida');
+			else{
+				console.log('contraseña no válida');
+				res.redirect('/');
+			}
+			
 		}
-		else console.log('cuenta no existente');
+		else{
+			console.log('cuenta no existente');
+			res.redirect('/');
+		}
 	});
 	//res.render('./game/main', { title: 'Main' })
 	

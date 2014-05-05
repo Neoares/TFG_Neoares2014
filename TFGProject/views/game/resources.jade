@@ -2,3 +2,62 @@ extends layout
 
 block topMenu
 	-var selected = 'Resources'
+
+block content
+	.jumbotron
+		table.table-bordered.center800
+			tbody
+				each building in resourceBuildings
+					tr
+						td
+							.tableContent
+								.main
+									.image
+										img(src="../../images/buildings/wishing_well.svg" alt="wishing_well" width="170" height="170")
+									.content(style="border-left:1px solid #DDDDDD; padding: 5px;")
+										.p.name #{building.name}, lv. #{building.level}
+										table(style="margin:5 0;")
+											tr
+												td
+													.p Build time: 
+												td
+													.p 6h
+										.p <br>
+										table.centered(style="margin:5 0;")
+											tr
+												if building.costs.wood!=0
+													td.res_table
+														img.border(src="../../images/resources/wood.png" alt="wood_res" width="50" height="40")
+												if building.costs.stone!=0
+													td.res_table
+														img.border(src="../../images/resources/stone.png" alt="stone_res" width="50" height="40")
+												if building.costs.iron!=0
+													td.res_table
+														img.border(src="../../images/resources/iron.png" alt="iron_res" width="50" height="40")
+												td.res_table
+													if(building.costs.wood > resources.wood || building.costs.stone > resources.stone || building.costs.iron > resources.iron)
+														a(class="btn btn-lg btn-success" href="javascript:void(0);" role="button" style="background-color:#AAAAAA") Upgrade
+													else
+														a(class="btn btn-lg btn-success btn-up-building" href="javascript:void(0);" name="#{building.id}" role="button") Upgrade
+											tr
+												if building.costs.wood!=0
+													td
+														if building.costs.wood > resources.wood
+															.p.red #{building.costs.wood}
+														else
+															.p #{building.costs.wood}
+												if building.costs.stone!=0
+													td
+														if building.costs.stone > resources.stone
+															.p.red #{building.costs.stone}
+														else
+															.p #{building.costs.stone}
+												if building.costs.iron!=0
+													td
+														if building.costs.iron > resources.iron
+															.p.red #{building.costs.iron}
+														else
+															.p #{building.costs.iron}
+															
+								.description
+									.p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non congue est. Sed quis felis a mi dignissim viverra et vitae elit. Donec porttitor volutpat lacus iaculis commodo. Duis quis vestibulum tellus, ac blandit est. Phasellus eget leo ornare, consequat turpis quis, adipiscing turpis. Etiam consequat ante quis fermentum convallis. 

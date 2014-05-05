@@ -18,14 +18,14 @@ html(lang="en")
 		block topMenu
 			-var selected = 'Home';
 
-		-var menu = { 'Home': '/game/index', 'Resources': '/game/resources', 'Buildings': '/game/buildings', 'Research': '/game/research', 'Mercenaries': '/game/mercenaries', 'About': '#'};
+		-var menu = { 'Home': '/game/index', 'Resources': '/game/resources', 'Buildings': '/game/buildings', 'Research': '/game/research', 'Mercenaries': '/game/mercenaries', 'Logout': '/logout'};
 		
 	
 	body
 		.container
 			.masthead
 				.topInfo
-					h3(class="text-muted") Hi, #{username}. You have #{resources.wood} wood.
+					h3(class="text-muted") Hi, #{username}. &nbsp; Wood:#{resources.wood} &nbsp; Stone:#{resources.stone} &nbsp; Iron:#{resources.iron} &nbsp; Cereal:#{resources.cereal}
 				ul.nav.nav-justified
 					each val, key in menu
 						if selected == key

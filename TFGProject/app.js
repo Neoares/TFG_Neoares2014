@@ -56,12 +56,15 @@ app.get('/game/resources', game.resources);
 app.get('/game/buildings', game.buildings);
 app.get('/game/research', game.research);
 app.get('/game/mercenaries', game.mercenaries);
+app.get('/logout', game.logout);
 
 app.post('/playerCreate', player.create);
 app.post('/playerRemove', player.remove);
 
 app.post('/userCreate', user.create);
 app.post('/enterGame', user.check);
+
+app.post("/upgrade", game.upgrade);
 
 db.init();
 

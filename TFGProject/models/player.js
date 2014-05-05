@@ -3,6 +3,7 @@ var mongoose = require('mongoose'),
 
 var playerSchema = new Schema({
 	name: { type: String, required: true, trim: true, index: { unique: true } },
+	score: { type: Number, required: true, default:  0},
 	resources: {
 		wood: { type: Number, required: true, default: 500},
 		stone: { type: Number, required: true, default: 300},
