@@ -47,11 +47,12 @@ function calcProduction(resource,lvl){
  * @param cost			resources that building costs
  * @returns {Boolean}	true if player can upgrade.
  */
-function verifyResources(ava, cost){
+function verifyResources(ava, cost, doc){
 	if(ava.wood>=cost.wood && ava.stone>=cost.stone && ava.iron>=cost.iron){
 		ava.wood-=cost.wood;
 		ava.stone-=cost.stone;
 		ava.iron-=cost.iron;
+		doc.score += cost.wood + cost.stone + cost.iron;
 		return true;
 	}
 	else return false;
@@ -66,7 +67,7 @@ exports.upgradeResBuilding = function(req,res){
 			id = parseInt(id);
 			listPos = id%100;
 			element = doc.res[listPos];
-			if(verifyResources(doc.resources, element.costs)){
+			if(verifyResources(doc.resources, element.costs, doc)){
 				element.level += 1;
 				element.costs = calcCosts(id,element.level+1,element.scalingValue,element.costs);
 				if(id==0) doc.resourcesPerHour.woodPerHour = calcProduction('wood',element.level);
@@ -95,7 +96,7 @@ exports.upgradeBuilding = function(req,res){
 			id = parseInt(id);
 			listPos = id%100;
 			element = doc.buildings[listPos];
-			if(verifyResources(doc.resources, element.costs)){
+			if(verifyResources(doc.resources, element.costs, doc)){
 				element.level += 1;
 				element.costs = calcCosts(id,element.level+1,element.scalingValue,element.costs);
 				doc.buildings[listPos] = element;

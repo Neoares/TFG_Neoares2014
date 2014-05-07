@@ -10,7 +10,7 @@ exports.index = function (req, res) {
 			resources['stone'] = Math.floor(resources['stone']);
 			resources['iron'] = Math.floor(resources['iron']);
 			resources['cereal'] = Math.floor(resources['cereal']);
-			res.render('./game/home', {username:req.session.name, resources:resources, score:doc.score, doc:doc});
+			res.render('./game/home', {username:req.session.name, resources:resources, doc:doc});
 		}
 	});
 }
@@ -24,7 +24,7 @@ exports.resources = function (req, res) {
 			resources['stone'] = Math.floor(resources['stone']);
 			resources['iron'] = Math.floor(resources['iron']);
 			resources['cereal'] = Math.floor(resources['cereal']);
-			res.render('./game/resources', {username:req.session.name, resources:resources, resourceBuildings:resourceBuildings});
+			res.render('./game/resources', {username:req.session.name, resources:resources, doc:doc});
 		}
 	});
 }
@@ -42,7 +42,7 @@ exports.buildings = function(req,res){
 			resources['iron'] = Math.floor(resources['iron']);
 			resources['cereal'] = Math.floor(resources['cereal']);
 			console.log(resources);
-			res.render('./game/buildings', {username:req.session.name, resources:resources, buildings:buildings});
+			res.render('./game/buildings', {username:req.session.name, resources:resources, doc:doc});
 		}
 	});
 }
@@ -55,7 +55,7 @@ exports.research = function(req,res){
 			resources['stone'] = Math.floor(resources['stone']);
 			resources['iron'] = Math.floor(resources['iron']);
 			resources['cereal'] = Math.floor(resources['cereal']);
-			res.render('./game/research', {username:req.session.name, resources:resources});
+			res.render('./game/research', {username:req.session.name, resources:resources, doc:doc});
 		}
 	});
 }
@@ -68,7 +68,7 @@ exports.mercenaries = function(req,res){
 			resources['stone'] = Math.floor(resources['stone']);
 			resources['iron'] = Math.floor(resources['iron']);
 			resources['cereal'] = Math.floor(resources['cereal']);
-			res.render('./game/mercenaries', {username:req.session.name, resources:resources});
+			res.render('./game/mercenaries', {username:req.session.name, resources:resources, doc:doc});
 		}
 	});
 }

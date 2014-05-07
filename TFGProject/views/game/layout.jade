@@ -19,13 +19,41 @@ html(lang="en")
 			-var selected = 'Home';
 
 		-var menu = { 'Home': '/game/index', 'Resources': '/game/resources', 'Buildings': '/game/buildings', 'Research': '/game/research', 'Mercenaries': '/game/mercenaries', 'Logout': '/logout'};
-		
 	
 	body
 		.container
 			.masthead
 				.topInfo
-					h3(class="text-muted") Hi, #{username}. &nbsp; Wood:#{resources.wood} &nbsp; Stone:#{resources.stone} &nbsp; Iron:#{resources.iron} &nbsp; Cereal:#{resources.cereal}
+					table
+						tr
+							td(colspan="2")
+								h3(class="text-muted") Hi, #{username}. &nbsp; &nbsp; &nbsp;
+							td
+								img.border(src="../../images/resources/wood.png" alt="wood_res" width="50" height="40")
+							td
+								p #{resources.wood}
+								p #{doc.resourcesPerHour.woodPerHour} /h &nbsp; &nbsp;
+								
+							td
+								img.border(src="../../images/resources/stone.png" alt="stone_res" width="50" height="40")
+							td
+								p #{resources.stone}
+								p #{doc.resourcesPerHour.stonePerHour} /h &nbsp; &nbsp;
+								
+							td
+								img.border(src="../../images/resources/iron.png" alt="iron_res" width="50" height="40")
+							td
+								p #{resources.iron}
+								p #{doc.resourcesPerHour.ironPerHour} /h &nbsp; &nbsp;
+								
+							td
+								img.border(src="../../images/resources/cereal.png" alt="cereal_res" width="50" height="40")
+							td
+								p #{resources.cereal} &nbsp; &nbsp;
+							
+							td
+								h3(class="text-muted") &nbsp; &nbsp; Score: #{Math.floor(doc.score/100)}
+								
 				ul.nav.nav-justified
 					each val, key in menu
 						if selected == key
