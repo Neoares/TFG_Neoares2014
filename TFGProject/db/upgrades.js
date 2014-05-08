@@ -11,6 +11,7 @@ var gameRouter = require('../routes/game');
 function calcCerealCost(id,lvl){
 	if(id=='0' || id=='1') return Math.floor(10*lvl*Math.pow(1.1,lvl));
 	else if(id=='2') return Math.floor(20*lvl*Math.pow(1.1,lvl));
+	else return 0;
 }
 
 /**
@@ -25,6 +26,7 @@ function calcCosts(id,lvl,scalingValue,costs){
 	if(id=='0') return {wood: Math.floor(60*Math.pow(scalingValue,lvl-1)), stone: Math.floor(15*Math.pow(scalingValue,lvl-1)), iron: 0};
 	else if(id=='1') return {wood: Math.floor(48*Math.pow(scalingValue,lvl-1)), stone: Math.floor(24*Math.pow(scalingValue,lvl-1)), iron: 0};
 	else if(id=='2') return {wood: Math.floor(225*Math.pow(scalingValue,lvl-1)), stone: Math.floor(75*Math.pow(scalingValue,lvl-1)), iron: 0};
+	else if(id=='3') return {wood: Math.floor(75*Math.pow(scalingValue,lvl-1)), stone: Math.floor(30*Math.pow(scalingValue,lvl-1)), iron: 0};
 	else return {wood: costs.wood*scalingValue, stone: costs.stone*scalingValue, iron: costs.iron*scalingValue};
 }
 
@@ -73,6 +75,12 @@ exports.upgradeResBuilding = function(req,res){
 				if(id==0) doc.resourcesPerHour.woodPerHour = calcProduction('wood',element.level);
 				else if(id==1) doc.resourcesPerHour.stonePerHour = calcProduction('stone',element.level);
 				else if(id==2) doc.resourcesPerHour.ironPerHour = calcProduction('iron',element.level);
+				if(id==3){
+					var c = calcProduction('cereal',element.level);
+					doc.cerealAvailable += c - doc.resources.cereal;
+					doc.resources.cereal = c;
+				}
+				else doc.cerealAvailable -= (calcCerealCost(id,element.level) - calcCerealCost(id,element.level-1));
 				doc.buildings[listPos] = element;
 				doc.markModified('res');
 				console.log(doc.resourcesPerHour);

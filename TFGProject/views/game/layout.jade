@@ -49,7 +49,11 @@ html(lang="en")
 							td
 								img.border(src="../../images/resources/cereal.png" alt="cereal_res" width="50" height="40")
 							td
-								p #{resources.cereal} &nbsp; &nbsp;
+								p Total: #{resources.cereal} &nbsp; &nbsp;
+								if(doc.cerealAvailable < 0)
+									p.red Available: #{doc.cerealAvailable} &nbsp; &nbsp;
+								else
+									p Available: #{doc.cerealAvailable} &nbsp; &nbsp;
 							
 							td
 								h3(class="text-muted") &nbsp; &nbsp; Score: #{Math.floor(doc.score/100)}

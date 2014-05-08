@@ -7,7 +7,7 @@ exports.init = {
 				       	name: 'Sawmill',
 				    	level: 0,
 				    	scalingValue: 1.5,
-				    	costs: {wood: 60, stone: 15, iron: 0},
+				    	costs: {wood: 60, stone: 15, iron: 0, cereal: 0},
 				    	id: '0'
 			    	},
 			    	
@@ -15,15 +15,22 @@ exports.init = {
 					    name: 'Iron Mine',
 					    level: 0,
 					    scalingValue: 1.6,
-					    costs: {wood: 48, stone: 24, iron: 0},
+					    costs: {wood: 48, stone: 24, iron: 0, cereal: 0},
 					    id: '1'
 				    },
 			    	{  
 					    name: 'Foundry',
 					    level: 0,
 					    scalingValue: 1.5,
-					    costs: {wood: 255, stone: 75, iron: 0},
+					    costs: {wood: 255, stone: 75, iron: 0, cereal: 0},
 					    id: '2'
+				    },
+				    {  
+					    name: 'Cereal Mill',
+					    level: 0,
+					    scalingValue: 1.5,
+					    costs: {wood: 255, stone: 75, iron: 0},
+					    id: '3'
 				    }
 		],
 		buildings:[
