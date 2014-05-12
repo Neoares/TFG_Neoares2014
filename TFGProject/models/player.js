@@ -18,7 +18,8 @@ var playerSchema = new Schema({
 	cerealAvailable: {type: Number, required: true, default: 0},
 	res: {type: Array, required:true, default: []},
 	buildings: { type: Array, required: true, default: []},
-	researches: { type: Array, required: true, default: []}
+	researches: { type: Array, required: true, default: []},
+	mercenaries: { type: Array, required: true, default: []}
 });
 
 var player = mongoose.model('playerModel', playerSchema);

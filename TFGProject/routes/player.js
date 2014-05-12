@@ -6,6 +6,7 @@ var player = require('../models/player').player;
 var initJson = require('../models/init').init;
 var building = require('../models/building').building;
 var research = require('../models/research').research;
+var mercenary = require('../models/mercenary').mercenary;
 
 exports.index = function(req, res) {
 	player.find({}, function(err, docs){
@@ -80,9 +81,22 @@ exports.createByUser = function(name,res){
 		newResearch.costs.iron = r.costs.iron;
 		newPlayer.researches[i] = newResearch;
 	}
-	/*newPlayer.buildings = initJson.buildings;
-	newPlayer.researches = initJson.researches;
-	newPlayer.res = initJson.res;*/
+	for(var i in initJson.mercenaries){
+		m = initJson.mercenaries[i];
+		var newMercenary = new mercenary();
+		console.log("i: "+i+", type: "+typeof(i)+"   parseInt(i): "+parseInt(i)+" type: "+typeof(parseInt(i)));
+		newMercenary.id = (parseInt(i)+300).toString();
+		newMercenary.name = m.name;
+		newMercenary.costs.wood = m.costs.wood;
+		newMercenary.costs.stone = m.costs.stone;
+		newMercenary.costs.iron = m.costs.iron;
+		newMercenary.stats.hp = m.stats.hp;
+		newMercenary.stats.shield = m.stats.shield;
+		newMercenary.stats.attack = m.stats.attack;
+		newMercenary.stats.speed = m.stats.speed;
+		newMercenary.barracksLevel = m.barracksLevel;
+		newPlayer.mercenaries[i] = newMercenary;
+	}
 	newPlayer.save(function(err){
 		if(err) console.log(err);
 		if(!err) res.json(201, {message: "player created with name: " + newPlayer.name});

@@ -36,7 +36,7 @@ block content
 														img.border(src="../../images/resources/iron.png" alt="iron_res" width="50" height="40")
 												td.res_table
 													if(building.costs.wood > resources.wood || building.costs.stone > resources.stone || building.costs.iron > resources.iron)
-														a(class="btn btn-lg btn-success" href="javascript:void(0);" role="button" style="background-color:#AAAAAA") Upgrade
+														a(class="btn btn-lg btn-success" href="javascript:void(0);" role="button" style="background-color:#AAAAAA; pointer-events: none; cursor: default;") Upgrade
 													else
 														a(class="btn btn-lg btn-success btn-up-building" href="javascript:void(0);" name="#{building.id}" role="button") Upgrade
 											tr

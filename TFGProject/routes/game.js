@@ -73,14 +73,18 @@ exports.mercenaries = function(req,res){
 	});
 }
 
-exports.logout = function(req,res){
-	req.session.destroy();
-	res.redirect('/');
-}
-
 exports.upgrade = function(req,res){
 	var type = Math.floor(parseInt(req.body.id)/100);
 	if(type==0)upgrades.upgradeResBuilding(req,res);
 	else if(type==1)upgrades.upgradeBuilding(req,res);
 	else if(type==2)return;
+}
+
+exports.hire = function(req,res){
+	upgrades.hire(req,res);
+}
+
+exports.logout = function(req,res){
+	req.session.destroy();
+	res.redirect('/');
 }

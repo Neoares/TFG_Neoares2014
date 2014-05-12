@@ -118,6 +118,17 @@ exports.upgradeBuilding = function(req,res){
 	});
 }
 
+exports.hire = function(req,res){
+	var id = req.body.id;
+	player.findOne({name:req.session.name}, function(err, doc){
+		if(doc.length!=0){
+			id = parseInt(id);
+			var mID = id%100;
+			
+		}
+	});
+}
+
 /*
  * 
  *

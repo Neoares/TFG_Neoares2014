@@ -31,6 +31,7 @@ function resetDB(){
 	mongoose.connection.collections['playermodels'].drop(function(err){ if(err) console.log(err)});
 	mongoose.connection.collections['buildingmodels'].drop(function(err){ if(err) console.log(err)});
 	mongoose.connection.collections['researchmodels'].drop(function(err){ if(err) console.log(err)});
+	mongoose.connection.collections['mercenarymodels'].drop(function(err){ if(err) console.log(err)});
 	console.log("DATABASE RESTARTED");
 }
 

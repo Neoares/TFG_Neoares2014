@@ -2,3 +2,64 @@ extends layout
 
 block topMenu
 	-var selected = 'Mercenaries'
+
+block content
+	.jumbotron
+		table.table-bordered.center800
+			tbody
+				each mercenary in doc.mercenaries
+					tr
+						td
+							.tableContent
+								.main
+									.image
+										img(src="../../images/mercenaries/sword.png" alt="wishing_well" width="170" height="170")
+									.content(style="border-left:1px solid #DDDDDD; padding: 5px;")
+										.p.name #{mercenary.name}. Hired: #{mercenary.quantity}
+										table(style="margin:5 0;")
+											tr
+												td
+													.p Build time: 
+												td
+													.p 6h
+										.p <br>
+										table.centered(style="margin:5 0;")
+											tr
+												if mercenary.costs.wood!=0
+													td.res_table
+														img.border(src="../../images/resources/wood.png" alt="wood_res" width="50" height="40")
+												if mercenary.costs.stone!=0
+													td.res_table
+														img.border(src="../../images/resources/stone.png" alt="stone_res" width="50" height="40")
+												if mercenary.costs.iron!=0
+													td.res_table
+														img.border(src="../../images/resources/iron.png" alt="iron_res" width="50" height="40")
+												td.res_table
+													input(type="text" id="#{mercenary.id}" class="form-control" style="height:57px; margin: 0 0 0 10px;")
+												td.res_table
+													if(mercenary.costs.wood > resources.wood || mercenary.costs.stone > resources.stone || mercenary.costs.iron > resources.iron)
+														a(class="btn btn-lg btn-success" href="javascript:void(0);" role="button" style="background-color:#AAAAAA; pointer-events: none; cursor: default; margin: 0 20 0px;") Hire
+													else
+														a(class="btn btn-lg btn-success btn-up-mercenary" href="javascript:void(0);" name="#{mercenary.id}" role="button" style="margin: 0 20 0px;") Hire
+											tr
+												if mercenary.costs.wood!=0
+													td
+														if mercenary.costs.wood > resources.wood
+															.p.red #{mercenary.costs.wood}
+														else
+															.p #{mercenary.costs.wood}
+												if mercenary.costs.stone!=0
+													td
+														if mercenary.costs.stone > resources.stone
+															.p.red #{mercenary.costs.stone}
+														else
+															.p #{mercenary.costs.stone}
+												if mercenary.costs.iron!=0
+													td
+														if mercenary.costs.iron > resources.iron
+															.p.red #{mercenary.costs.iron}
+														else
+															.p #{mercenary.costs.iron}
+															
+								.description
+									.p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non congue est. Sed quis felis a mi dignissim viverra et vitae elit. Donec porttitor volutpat lacus iaculis commodo. Duis quis vestibulum tellus, ac blandit est. Phasellus eget leo ornare, consequat turpis quis, adipiscing turpis. Etiam consequat ante quis fermentum convallis. 

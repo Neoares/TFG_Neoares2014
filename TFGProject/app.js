@@ -65,6 +65,7 @@ app.post('/userCreate', user.create);
 app.post('/enterGame', user.check);
 
 app.post("/upgrade", game.upgrade);
+app.post("/hire", game.hire);
 
 db.init();
 
