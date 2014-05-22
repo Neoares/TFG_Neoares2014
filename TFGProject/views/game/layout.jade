@@ -25,32 +25,32 @@ html(lang="en")
 		.container
 			.masthead
 				.topInfo
-					table(style="margin:")
+					table(style="width:100%")
 						tr
 							td(colspan="2")
 								h3(class="text-muted")
 									| Hi, #{username}. &nbsp; &nbsp;
-									a.btn.btn-default(href="/logout") logout
+									a.btn.btn-default(href="/logout") Logout
 									| &nbsp; &nbsp;
-							td
+							td(colspan="2")
 								img.border(src="../../images/resources/wood.png" alt="wood_res" width="50" height="40")
 							td
 								p #{resources.wood}
 								p #{doc.resourcesPerHour.woodPerHour} /h &nbsp; &nbsp;
 								
-							td
+							td(colspan="2")
 								img.border(src="../../images/resources/stone.png" alt="stone_res" width="50" height="40")
 							td
 								p #{resources.stone}
 								p #{doc.resourcesPerHour.stonePerHour} /h &nbsp; &nbsp;
 								
-							td
+							td(colspan="2")
 								img.border(src="../../images/resources/iron.png" alt="iron_res" width="50" height="40")
 							td
 								p #{resources.iron}
 								p #{doc.resourcesPerHour.ironPerHour} /h &nbsp; &nbsp;
 								
-							td
+							td(colspan="2")
 								img.border(src="../../images/resources/cereal.png" alt="cereal_res" width="50" height="40")
 							td
 								p Total: #{resources.cereal} &nbsp; &nbsp;

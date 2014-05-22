@@ -10,17 +10,35 @@ block content
 			
 	.row
 		.col-lg-4
-			h2 Safari Warning!
-			p(class="text-danger") As of v7.0.1, Safari exhibits a bug in which resizing your browser horizontally causes rendering errors in the justified nav that are cleared upon refreshing.
-			p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			a(class="btn btn-primary" href="#" role="button") View details &raquo;
+			h2 Resource buildings
+			table.table-bordered
+				each resBuilding in doc.res
+					tr
+						td
+							img(src="../../images/buildings/wishing_well.svg" alt="wishing_well" width="50" height="40")
+						td(style="width:100%;")
+							p #{resBuilding.name}
+						td
+							p #{resBuilding.level}
 		.col-lg-4
-			h2 Safari Warning!
-			p(class="text-danger") As of v7.0.1, Safari exhibits a bug in which resizing your browser horizontally causes rendering errors in the justified nav that are cleared upon refreshing.
-			p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			a(class="btn btn-primary" href="#" role="button") View details &raquo;
+			h2 Buildings
+			table.table-bordered
+				each building in doc.buildings
+					tr
+						td
+							img(src="../../images/buildings/wishing_well.svg" alt="wishing_well" width="50" height="40")
+						td(style="width:100%;")
+							p #{building.name}
+						td
+							p #{building.level}
 		.col-lg-4
-			h2 Safari Warning!
-			p(class="text-danger") As of v7.0.1, Safari exhibits a bug in which resizing your browser horizontally causes rendering errors in the justified nav that are cleared upon refreshing.
-			p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			a(class="btn btn-primary" href="#" role="button") View details &raquo;
+			h2 Mercenaries
+			table.table-bordered
+				each mercenary in doc.mercenaries
+					tr
+						td
+							img(src="../../images/mercenaries/sword.png" alt="wishing_well" width="50" height="40")
+						td(style="width:100%;")
+							p #{mercenary.name}
+						td
+							.p #{mercenary.quantity}
