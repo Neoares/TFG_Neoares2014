@@ -19,7 +19,6 @@ function upBuild(){
 function hireMerc(){
 	var id = $(this).attr("name");
 	var amount = $("#"+id).val();
-	alert(amount);
 	$.ajax({
 		async: true,
 		type: "POST",

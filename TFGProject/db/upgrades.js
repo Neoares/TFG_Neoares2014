@@ -93,9 +93,7 @@ exports.upgradeResBuilding = function(req,res){
 	});
 }
 
-/*
- * 
- */
+
 exports.upgradeBuilding = function(req,res){
 	var id = req.body.id;
 	player.findOne({name:req.session.name}, function(err, doc){
@@ -120,10 +118,19 @@ exports.upgradeBuilding = function(req,res){
 
 exports.hire = function(req,res){
 	var id = req.body.id;
+	var amount = parseInt(req.body.amount);
 	player.findOne({name:req.session.name}, function(err, doc){
 		if(doc.length!=0){
-			id = parseInt(id);
-			var mID = id%100;
+			var mID = parseInt(id)%100;
+			var elem = doc.mercenaries[mID];
+			if(verifyResources(doc.resources, {wood:elem.costs.wood*amount, stone:elem.costs.stone*amount, iron:elem.costs.iron*amount}, doc)){
+				elem.quantity += amount;
+				doc.markModified('mercenaries');
+				doc.save(function(err){
+					if(err) console.log(err);
+					else res.redirect("");
+				});
+			}
 			
 		}
 	});

@@ -25,10 +25,13 @@ html(lang="en")
 		.container
 			.masthead
 				.topInfo
-					table
+					table(style="margin:")
 						tr
 							td(colspan="2")
-								h3(class="text-muted") Hi, #{username}. &nbsp; &nbsp; &nbsp;
+								h3(class="text-muted")
+									| Hi, #{username}. &nbsp; &nbsp;
+									a.btn.btn-default(href="/logout") logout
+									| &nbsp; &nbsp;
 							td
 								img.border(src="../../images/resources/wood.png" alt="wood_res" width="50" height="40")
 							td

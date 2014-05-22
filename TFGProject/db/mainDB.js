@@ -43,7 +43,7 @@ function init(){
 	mongoose.connect('mongodb://localhost:27017/test', function(err){
 		if(err) console.log('error attempting to connect to database: ' + err);
 		else{
-			resetDB();
+			//resetDB();
 			console.log('db init');
 			autoUpdateResources();
 		}
