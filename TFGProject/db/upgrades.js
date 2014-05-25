@@ -3,6 +3,7 @@ var player = require('../models/player').player;
 var gameRouter = require('../routes/game');
 
 /**
+ * Calculates the cereal costs of the main resource-producer buildings
  * 
  * @param id 	the id of the entity
  * @param lvl	the level of the next upgrade for the entity with id 'id'
@@ -15,6 +16,7 @@ function calcCerealCost(id,lvl){
 }
 
 /**
+ * Calculates the costs of the buildings, based on its level.
  * 
  * @param id			the id of the entity
  * @param lvl			the level of the next upgrade for the entity with id 'id'
@@ -31,6 +33,7 @@ function calcCosts(id,lvl,scalingValue,costs){
 }
 
 /**
+ * Calculates the production of the main resource-producer buildings
  * 
  * @param resource		the name of the resource that is being upgraded
  * @param lvl			the level of the resource producer
@@ -43,10 +46,31 @@ function calcProduction(resource,lvl){
 	else if(resource=='cereal') return (Math.floor(20*lvl*Math.pow(1.1,lvl)));
 }
 
+
 /**
+ * Applies the efficiency factor (based on the cereal balance) to the resource production
  * 
- * @param res			resources that player has
- * @param cost			resources that building costs
+ * @param rph	resource production (Resources per Hour)
+ * @param c		total amount of cereal
+ * @param cA	cereal available
+ * @returns		the new production with the efficiency factor 'f'
+ */
+function applyProdFactor(rph,c,cA){
+	var f = 1;
+	if(c!=cA) f = c/(c-cA);	//prevent from dividing by zero.
+	console.log("c: "+c+", cA: "+cA+", efficiency: "+f);
+	console.log("woodPerHour: "+rph.woodPerHour);
+	console.log("new woodPerHour: "+rph.woodPerHour*f);
+	if(f<1)	return {woodPerHour: Math.floor((rph.woodPerHour-40)*f+40), stonePerHour:  Math.floor((rph.stonePerHour-20)*f+20), ironPerHour: Math.floor(rph.ironPerHour*f)};
+	else	return rph;
+}
+
+/**
+ * Verifies if it's possible to unlock buildings/mercenaries.
+ * If it's possible, this method automatically reduces the available amount of resources.
+ * 
+ * @param ava			resources available
+ * @param cost			resources that the building/mercenary costs
  * @returns {Boolean}	true if player can upgrade.
  */
 function verifyResources(ava, cost, doc){
@@ -72,18 +96,20 @@ exports.upgradeResBuilding = function(req,res){
 			if(verifyResources(doc.resources, element.costs, doc)){
 				element.level += 1;
 				element.costs = calcCosts(id,element.level+1,element.scalingValue,element.costs);
-				if(id==0) doc.resourcesPerHour.woodPerHour = calcProduction('wood',element.level);
-				else if(id==1) doc.resourcesPerHour.stonePerHour = calcProduction('stone',element.level);
-				else if(id==2) doc.resourcesPerHour.ironPerHour = calcProduction('iron',element.level);
+				if(id==0) doc.resourcesPerHour.woodPerHour = calcProduction('wood',element.level,doc.resources.cereal,doc.cerealAvailable);
+				else if(id==1) doc.resourcesPerHour.stonePerHour = calcProduction('stone',element.level,doc.resources.cereal,doc.cerealAvailable);
+				else if(id==2) doc.resourcesPerHour.ironPerHour = calcProduction('iron',element.level,doc.resources.cereal,doc.cerealAvailable);
 				if(id==3){
-					var c = calcProduction('cereal',element.level);
+					var c = calcProduction('cereal',element.level,doc.resources.cereal,doc.cerealAvailable);
 					doc.cerealAvailable += c - doc.resources.cereal;
 					doc.resources.cereal = c;
 				}
 				else doc.cerealAvailable -= (calcCerealCost(id,element.level) - calcCerealCost(id,element.level-1));
+				console.log(doc.resourcesPerHour);
+				//doc.resourcesPerHour = applyProdFactor(doc.resourcesPerHour,doc.resources.cereal,doc.cerealAvailable);
+				console.log(doc.resourcesPerHour);
 				doc.buildings[listPos] = element;
 				doc.markModified('res');
-				console.log(doc.resourcesPerHour);
 				doc.save(function(err){
 					if(err) console.log(err);
 					else res.redirect("");
