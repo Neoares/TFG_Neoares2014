@@ -73,6 +73,34 @@ exports.mercenaries = function(req,res){
 	});
 }
 
+exports.empire = function(req,res){
+	playerDB.findOne({name:req.session.name}, function(err, doc){
+		if(!err && doc){
+			resources = doc.resources;
+			resources['wood'] = Math.floor(resources['wood']);
+			resources['stone'] = Math.floor(resources['stone']);
+			resources['iron'] = Math.floor(resources['iron']);
+			resources['cereal'] = Math.floor(resources['cereal']);
+			
+			playerDB.find({},function(err,docs){
+				if(!err && docs){
+					var arr = [];
+					for(var i=0; i<docs.length; i++){
+						var obj = {};
+						obj.name = docs[i].name;
+						obj.guild = docs[i].guild;
+						obj.coords = docs[i].coords;
+						arr.push(obj);
+					}
+					//console.log(arr);
+					res.render('./game/empire', {username:req.session.name, resources:resources, doc:doc, players: arr});
+				}
+			});
+		}
+	});
+	
+}
+
 exports.upgrade = function(req,res){
 	var type = Math.floor(parseInt(req.body.id)/100);
 	if(type==0)upgrades.upgradeResBuilding(req,res);

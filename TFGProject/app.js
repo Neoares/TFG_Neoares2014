@@ -56,6 +56,7 @@ app.get('/game/resources', game.resources);
 app.get('/game/buildings', game.buildings);
 app.get('/game/research', game.research);
 app.get('/game/mercenaries', game.mercenaries);
+app.get('/game/empire', game.empire);
 app.get('/logout', game.logout);
 
 app.post('/playerCreate', player.create);

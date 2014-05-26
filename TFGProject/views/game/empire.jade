@@ -1,0 +1,34 @@
+extends layout
+
+block topMenu
+	-var selected = 'Buildings'
+
+block content
+	.jumbotron
+		table.table-bordered.center800
+			thead
+				tr
+					th
+						
+					th(style="text-align:center;")
+						p Username
+					th(style="text-align:center;")
+						p Guild
+					th(style="text-align:center;")
+						p Actions
+			each player in players	
+				tbody
+					tr
+						td(style="display:table-cell;")
+							table
+								tr
+									td
+										img(src="../../images/village.png" alt="village" width="80" height="45" style="margin:5px; border:1px solid #BCBCBC;")
+									td
+										p [#{player.coords.country}:#{player.coords.region}:#{player.coords.village}]
+						td
+							p #{player.name}
+						td
+							p #{player.guild}
+						td
+							p actions

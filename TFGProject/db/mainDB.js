@@ -1,5 +1,9 @@
 var mongoose = require('mongoose');
 var player = require('../models/player').player;
+var playerRoute = require('../routes/player');
+var user = require('../models/user').user;
+var rnd = require('../utils/random.js');
+
 
 var time;
 var fs = require('fs');
@@ -23,6 +27,20 @@ function autoUpdateResources(){
 		},1000);
 }
 
+function createTestUser(){
+	var newUser = new user();
+	newUser.username = "USR_"+rnd.stringGen(8);
+	newUser.usernameLower = newUser.username.toLowerCase();
+	newUser.password = rnd.stringGen(8);
+	newUser.mail = rnd.stringGen(8)+"@gmail.com";
+	newUser.save(function(err){
+		if(!err){
+			playerRoute.createByUser(newUser.username,null);	//calls the createByUser method in 'player.js' route.
+		}
+		else res.json(500, {message: "could not create user, error: " + err});
+	});
+}
+
 /*
  * Deletes the user and player tables in the database.
  */
@@ -43,7 +61,9 @@ function init(){
 	mongoose.connect('mongodb://localhost:27017/test', function(err){
 		if(err) console.log('error attempting to connect to database: ' + err);
 		else{
-			resetDB();
+			/*resetDB();
+			for(var i=0;i<100;i++)
+				createTestUser();*/
 			console.log('db init');
 			autoUpdateResources();
 		}

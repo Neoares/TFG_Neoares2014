@@ -4,6 +4,7 @@ var mongoose = require('mongoose'),
 var playerSchema = new Schema({
 	name: { type: String, required: true, trim: true, index: { unique: true } },
 	score: { type: Number, required: true, default:  0},
+	guild: {type: String, required: false, default: ""},
 	resources: {
 		wood: { type: Number, required: true, default: 500},
 		stone: { type: Number, required: true, default: 300},
@@ -19,7 +20,12 @@ var playerSchema = new Schema({
 	res: {type: Array, required:true, default: []},
 	buildings: { type: Array, required: true, default: []},
 	researches: { type: Array, required: true, default: []},
-	mercenaries: { type: Array, required: true, default: []}
+	mercenaries: { type: Array, required: true, default: []},
+	coords: {
+		country: {type: Number, required: true, default:0},
+		region: {type: Number, required: true, default:0},
+		village: {type: Number, required: true, default:0}
+	}
 });
 
 var player = mongoose.model('playerModel', playerSchema);

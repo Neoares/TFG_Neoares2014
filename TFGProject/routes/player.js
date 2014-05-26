@@ -1,7 +1,7 @@
 /*
  * This file contains methods designed for handle 'get' or 'post' requests from the browser
  */
-
+var rnd = require('../utils/random.js');
 var player = require('../models/player').player;
 var initJson = require('../models/init').init;
 var building = require('../models/building').building;
@@ -47,6 +47,7 @@ exports.create = function(req, res){
 exports.createByUser = function(name,res){
 	var newPlayer = new player();
 	newPlayer.name = name;
+	if(!res) if(Math.floor(Math.random()*2)==1) newPlayer.guild = "GLD_"+rnd.stringGen(8);
 	for(var i in initJson.res){
 		r = initJson.res[i];
 		var newRes = new building();
@@ -72,7 +73,7 @@ exports.createByUser = function(name,res){
 	for(var i in initJson.researches){
 		r = initJson.researches[i];
 		var newResearch = new research();
-		console.log("i: "+i+", type: "+typeof(i)+"   parseInt(i): "+parseInt(i)+" type: "+typeof(parseInt(i)));
+		//console.log("i: "+i+", type: "+typeof(i)+"   parseInt(i): "+parseInt(i)+" type: "+typeof(parseInt(i)));
 		newResearch.id = (parseInt(i)+200).toString();
 		newResearch.name = r.name;
 		newResearch.scalingValue = r.scalingValue;
@@ -84,7 +85,7 @@ exports.createByUser = function(name,res){
 	for(var i in initJson.mercenaries){
 		m = initJson.mercenaries[i];
 		var newMercenary = new mercenary();
-		console.log("i: "+i+", type: "+typeof(i)+"   parseInt(i): "+parseInt(i)+" type: "+typeof(parseInt(i)));
+		//console.log("i: "+i+", type: "+typeof(i)+"   parseInt(i): "+parseInt(i)+" type: "+typeof(parseInt(i)));
 		newMercenary.id = (parseInt(i)+300).toString();
 		newMercenary.name = m.name;
 		newMercenary.costs.wood = m.costs.wood;
@@ -99,8 +100,10 @@ exports.createByUser = function(name,res){
 	}
 	newPlayer.save(function(err){
 		if(err) console.log(err);
-		if(!err) res.json(201, {message: "player created with name: " + newPlayer.name});
-		else res.json(500, {message: "could not create player, error: " + err});
+		if(res){
+			if(!err) res.json(201, {message: "player created with name: " + newPlayer.name});
+			else res.json(500, {message: "could not create player, error: " + err});
+		}
 	});
 }
 
