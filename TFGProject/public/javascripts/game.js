@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	$(".btn-up-building").click(upBuild);
 	$(".btn-up-mercenary").click(hireMerc);
+	$(".btn-attack").click(attack);
 });
 
 function upBuild(){
@@ -26,5 +27,21 @@ function hireMerc(){
 		data: {id: id, amount: amount},
 		url: "/hire",
 		success: function(){window.location.reload();}
+	});
+}
+
+function attack(){
+	var t = $(this).attr("name");
+	$.ajax({
+		async: true,
+		type: "POST",
+		datatype: "html",
+		data: {target: t},
+		url: "/attack",
+		success: function(w){
+			//console.log("success!!"),
+			//$("#notifications").text(w);
+			window.location.reload();
+		}
 	});
 }

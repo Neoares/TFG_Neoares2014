@@ -9,6 +9,8 @@ html(lang="en")
 		
 		script(src="../javascripts/jquery.js")
 		script(src="../javascripts/game.js")
+		script(src="/socket.io/socket.io.js")
+		script(src="../javascripts/websocket.js")
 		
 		title Game Page
 		
@@ -35,19 +37,22 @@ html(lang="en")
 							td(colspan="2")
 								img.border(src="../../images/resources/wood.png" alt="wood_res" width="50" height="40")
 							td
-								p #{resources.wood}
+								#wood
+									p #{resources.wood}
 								p #{doc.resourcesPerHour.woodPerHour} /h &nbsp; &nbsp;
 								
 							td(colspan="2")
 								img.border(src="../../images/resources/stone.png" alt="stone_res" width="50" height="40")
 							td
-								p #{resources.stone}
+								#stone
+									p #{resources.stone}
 								p #{doc.resourcesPerHour.stonePerHour} /h &nbsp; &nbsp;
 								
 							td(colspan="2")
 								img.border(src="../../images/resources/iron.png" alt="iron_res" width="50" height="40")
 							td
-								p #{resources.iron}
+								#iron
+									p #{resources.iron}
 								p #{doc.resourcesPerHour.ironPerHour} /h &nbsp; &nbsp;
 								
 							td(colspan="2")
@@ -70,6 +75,8 @@ html(lang="en")
 						else
 							li
 								a(href=val)= key
+				#date
+				#notifications
 	
 			
 			block content

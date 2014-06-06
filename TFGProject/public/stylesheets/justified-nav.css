@@ -143,3 +143,8 @@ p {
 .centered td{
 	text-align:center;	
 }
+
+#notifications{
+	margin: 5px;
+	text-align:center;
+}

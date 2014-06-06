@@ -1,7 +1,7 @@
 extends layout
 
 block topMenu
-	-var selected = 'Buildings'
+	-var selected = 'Empire'
 
 block content
 	.jumbotron
@@ -15,20 +15,26 @@ block content
 					th(style="text-align:center;")
 						p Guild
 					th(style="text-align:center;")
+						p Score
+					th(style="text-align:center;")
 						p Actions
-			each player in players	
-				tbody
-					tr
-						td(style="display:table-cell;")
-							table
-								tr
-									td
-										img(src="../../images/village.png" alt="village" width="80" height="45" style="margin:5px; border:1px solid #BCBCBC;")
-									td
-										p [#{player.coords.country}:#{player.coords.region}:#{player.coords.village}]
-						td
-							p #{player.name}
-						td
-							p #{player.guild}
-						td
-							p actions
+			tbody
+				each player in players	
+					if player.name!=username
+						tr
+							td(style="display:table-cell;")
+								table
+									tr
+										td
+											img(src="../../images/village.png" alt="village" width="80" height="45" style="margin:5px; border:1px solid #BCBCBC;")
+										td
+											p [#{player.coords.country}:#{player.coords.region}:#{player.coords.village}]
+							td
+								p #{player.name}
+							td
+								p #{player.guild}
+							td
+								p #{player.score}
+							td
+								a.btn-attack(name="#{player.name}" href="javascript:void(0);")
+									img(src="../../images/buttons/attack_sword.png" alt="village" width="40" height="40" style="margin: 0 5px ;")

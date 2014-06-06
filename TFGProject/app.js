@@ -12,7 +12,9 @@ var player = require('./routes/player');
 var user = require('./routes/user');
 var game = require('./routes/game');
 
-var app = express();
+var app = require('express')();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
 // all environments
 app.set('port', process.env.PORT || 3000);	//sets the port number.
@@ -67,12 +69,25 @@ app.post('/enterGame', user.check);
 
 app.post("/upgrade", game.upgrade);
 app.post("/hire", game.hire);
+app.post("/attack", game.attack);
 
-db.init();
+db.init(io);
 
 /*
  * Creates the server listening on port 'port'.
  */
-http.createServer(app).listen(app.get('port'), function(){
+/*http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
+});*/
+
+io.on('connection', function(){ 
+	console.log('Express server listening on port ' + app.get('port'));
+	//console.log('socket: '+socket);
 });
+/*io.sockets.on('connection', function(socket){
+    //send data to client
+    setInterval(function(){
+        socket.emit('date', {'date': new Date()});
+    }, 1000);
+});*/
+server.listen(3000);

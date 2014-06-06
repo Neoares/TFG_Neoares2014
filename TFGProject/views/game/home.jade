@@ -5,8 +5,15 @@ block topMenu
 	
 block content
 	.jumbotron
-		img(src="../../images/village.png" alt="village" width="800" height="450" style="border:1px solid black;")
-		p(class="lead") This is your village.
+		.row
+			.col-lg-8
+				img(src="../../images/village.png" alt="village" width="800" height="450" style="border:1px solid black;")
+			.col-lg-4
+				div(style="text-align:right")
+					h3 Coordinates:
+					p(class="lead") Country: #{doc.coords.country}
+					p(class="lead") Region: #{doc.coords.region}
+					p(class="lead") Village: #{doc.coords.village}
 			
 	.row
 		.col-lg-4

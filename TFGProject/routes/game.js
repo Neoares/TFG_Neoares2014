@@ -1,6 +1,7 @@
 var player = require('./player');
 var playerDB = require('../models/player').player;
 var upgrades = require('../db/upgrades');
+var attack = require('../db/attack');
 
 exports.index = function (req, res) {
 	playerDB.findOne({name:req.session.name}, function(err, doc){
@@ -30,8 +31,6 @@ exports.resources = function (req, res) {
 }
 
 exports.buildings = function(req,res){
-	console.log("routing to buildings");
-	console.log(req.session.name);
 	playerDB.findOne({name:req.session.name}, function(err, doc){
 		if(!err && doc){
 			resources = doc.resources;
@@ -110,6 +109,10 @@ exports.upgrade = function(req,res){
 
 exports.hire = function(req,res){
 	upgrades.hire(req,res);
+}
+
+exports.attack = function(req,res){
+	attack.attack(req,res);
 }
 
 exports.logout = function(req,res){

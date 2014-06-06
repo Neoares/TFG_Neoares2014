@@ -4,6 +4,9 @@ var playerRoute = require('../routes/player');
 var user = require('../models/user').user;
 var rnd = require('../utils/random.js');
 
+var sckt;
+
+
 
 var time;
 var fs = require('fs');
@@ -13,19 +16,42 @@ var fs = require('fs');
  * ('resourcePerHour'/3600) each second
  */
 function autoUpdateResources(){
-	time=setInterval(function(){
+	setInterval(function(){
 		player.find({}, 'resources resourcesPerHour', function(err, docs){
 			if(docs.length==0)return;
 				for(var i in docs){
 					docs[i].resources.wood += docs[i].resourcesPerHour.woodPerHour/3600;
 					docs[i].resources.stone += docs[i].resourcesPerHour.stonePerHour/3600;
 					docs[i].resources.iron += docs[i].resourcesPerHour.ironPerHour/3600;
+					docs[i].save(function(err){
+						if(err) console.log(err);
+					});
+					
 				}
-				docs[i].save();
 		});
 		//console.log('resources updated');
-		},1000);
+	},1000);
 }
+
+function updateHour(socket){
+	setInterval(function(){
+        socket.emit('date', {'date': new Date()});
+    }, 1000);
+}
+
+/*var resTimer;
+function updateResources(socket){
+	resTimer = setInterval(function(){
+        console.log("algo");
+    }, 1000);
+		
+		sckt.emit('resources', {
+			wood: Math.floor(docs[i].resources.wood),
+			stone: Math.floor(docs[i].resources.stone),
+			iron: Math.floor(docs[i].resources.iron)
+		});
+}*/
+
 
 function createTestUser(){
 	var newUser = new user();
@@ -57,7 +83,7 @@ function resetDB(){
  * Initializes the DataBase.
  * 'connect' parameter format: 'mongodb://ip_address:port/database'.
  */
-function init(){
+function init(io){
 	mongoose.connect('mongodb://localhost:27017/test', function(err){
 		if(err) console.log('error attempting to connect to database: ' + err);
 		else{
@@ -67,6 +93,14 @@ function init(){
 			console.log('db init');
 			autoUpdateResources();
 		}
+		io.sockets.on('connection', function(socket){
+			updateHour(socket);
+		});
+		/*io.sockets.on('connection', function(socket){
+			clearInterval(resTimer);
+			updateResources(socket);
+			console.log("llamada");
+		});*/
 	});
 
 }
