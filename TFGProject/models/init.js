@@ -11,7 +11,7 @@ exports.init = {
 			    	},
 			    	
 			    	{  
-					    name: 'Iron Mine',
+					    name: 'Stone Mine',
 					    scalingValue: 1.6,
 					    costs: {wood: 48, stone: 24, iron: 0, cereal: 0},
 					    id: '1'

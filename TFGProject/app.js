@@ -50,7 +50,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 //app.get('/players', player.index);
 //app.get('/players/:name', player.show);
-app.get('/signUp', function(req,res){res.render('signup')});
+app.get('/signUp', function(req,res){res.render('signup');});
 
 app.get('/game', game.index);
 app.get('/game/index', game.index);	//go to the main game page
@@ -80,14 +80,11 @@ db.init(io);
   console.log('Express server listening on port ' + app.get('port'));
 });*/
 
-io.on('connection', function(){ 
+/*io.of('/resources').on('connection', function(){ 
 	console.log('Express server listening on port ' + app.get('port'));
 	//console.log('socket: '+socket);
-});
-/*io.sockets.on('connection', function(socket){
-    //send data to client
-    setInterval(function(){
-        socket.emit('date', {'date': new Date()});
-    }, 1000);
 });*/
-server.listen(3000);
+
+server.listen(3000, function(){
+	console.log('Server listening on port' + app.get('port'));
+});

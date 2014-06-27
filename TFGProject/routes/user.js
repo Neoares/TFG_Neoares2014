@@ -48,6 +48,7 @@ exports.check = function(req, res){
 		if(!err && doc){
 			if(doc.password==req.body.password){
 				req.session.name = doc.username;
+				//res.json({user: req.session.name});
 				res.redirect('/game/index');
 			}
 			else{

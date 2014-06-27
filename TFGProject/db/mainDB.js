@@ -39,18 +39,24 @@ function updateHour(socket){
     }, 1000);
 }
 
-/*var resTimer;
 function updateResources(socket){
-	resTimer = setInterval(function(){
-        console.log("algo");
-    }, 1000);
+	var i=0;
+	setInterval(function(){
+	    //console.log("algo");
+		socket.emit('resources', {
+			wood: Math.floor(i),
+			stone: Math.floor(i),
+			iron: Math.floor(i)
+		});
+		i++;
+	}, 1000);
 		
-		sckt.emit('resources', {
+		/*socket.emit('resources', {
 			wood: Math.floor(docs[i].resources.wood),
 			stone: Math.floor(docs[i].resources.stone),
 			iron: Math.floor(docs[i].resources.iron)
-		});
-}*/
+		});*/
+}
 
 
 function createTestUser(){
@@ -93,14 +99,16 @@ function init(io){
 			console.log('db init');
 			autoUpdateResources();
 		}
-		io.sockets.on('connection', function(socket){
+		io.of('/date').on('connection', function(socket){
 			updateHour(socket);
 		});
-		/*io.sockets.on('connection', function(socket){
-			clearInterval(resTimer);
+		/*io.of('/resources').on('connection', function(socket){
 			updateResources(socket);
-			console.log("llamada");
+			//console.log("recursos :D");
+			//socket.on('disconnect',function(){console.log("CIERRATE!!!");})
+			//clearInterval(resTimer);
 		});*/
+		
 	});
 
 }

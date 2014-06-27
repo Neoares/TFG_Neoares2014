@@ -10,7 +10,8 @@ html(lang="en")
 		script(src="../javascripts/jquery.js")
 		script(src="../javascripts/game.js")
 		script(src="/socket.io/socket.io.js")
-		script(src="../javascripts/websocket.js")
+		
+		block scripts
 		
 		title Game Page
 		
@@ -21,9 +22,11 @@ html(lang="en")
 		block topMenu
 			-var selected = 'Home';
 
-		-var menu = { 'Home': '/game/index', 'Resources': '/game/resources', 'Buildings': '/game/buildings', 'Research': '/game/research', 'Mercenaries': '/game/mercenaries', 'Empire': '/game/empire'};
+		-var menu = { 'Home': '/game/index', 'Resources': '/game/resources', 'Buildings': '/game/buildings', 'Mercenaries': '/game/mercenaries', 'Empire': '/game/empire'};
 	
 	body
+		a(target="_blank" href='https://github.com/Neoares/TFG_Neoares2014')
+			img(style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png")
 		.container
 			.masthead
 				.topInfo
@@ -65,7 +68,7 @@ html(lang="en")
 									p Available: #{doc.cerealAvailable} &nbsp; &nbsp;
 							
 							td
-								h3(class="text-muted") &nbsp; &nbsp; Score: #{Math.floor(doc.score/100)}
+								h3(class="text-muted") &nbsp; &nbsp; Score: #{Math.floor(doc.score)}
 								
 				ul.nav.nav-justified
 					each val, key in menu
@@ -75,12 +78,13 @@ html(lang="en")
 						else
 							li
 								a(href=val)= key
-				#date
+				#date(style='height:30px;')
 				#notifications
 	
 			
 			block content
 			
 			.footer
-				p &copy; Company 2014
+				p Created by 
+					a(target="_blank" href="https://github.com/Neoares") @Neoares
 			

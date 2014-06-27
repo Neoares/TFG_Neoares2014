@@ -1,10 +1,11 @@
-var socket = io.connect();
+var rSocket = io.connect('/resources');
+var dSocket = io.connect('/date');
 
-socket.on('date', function(data){
+dSocket.on('date', function(data){
 	$('#date').text(data.date);
 });
 
-socket.on('resources', function(data){
+rSocket.on('resources', function(data){
 	$('#wood').html("<p>"+data.wood+"</p>");
 	$('#stone').html("<p>"+data.stone+"</p>");
 	$('#iron').html("<p>"+data.iron+"</p>");

@@ -40,8 +40,8 @@ function attack(){
 		url: "/attack",
 		success: function(w){
 			//console.log("success!!"),
-			//$("#notifications").text(w);
-			window.location.reload();
+			$("#notifications").text(w);
+			//window.location.reload();
 		}
 	});
 }

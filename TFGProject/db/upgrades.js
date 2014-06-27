@@ -7,7 +7,7 @@ var gameRouter = require('../routes/game');
  * 
  * @param id 	the id of the entity
  * @param lvl	the level of the next upgrade for the entity with id 'id'
- * @returns		the cereal cost of the next upgrade
+ * @returns {Number}	the cereal cost of the next upgrade
  */
 function calcCerealCost(id,lvl){
 	if(id=='0' || id=='1') return Math.floor(10*lvl*Math.pow(1.1,lvl));
@@ -22,7 +22,7 @@ function calcCerealCost(id,lvl){
  * @param lvl			the level of the next upgrade for the entity with id 'id'
  * @param scalingValue	the scaling value of the costs
  * @param costs			the actual cost of the entity
- * @returns				the costs of the next upgrade
+ * @returns {Object}	the costs of the next upgrade
  */
 function calcCosts(id,lvl,scalingValue,costs){
 	if(id=='0') return {wood: Math.floor(60*Math.pow(scalingValue,lvl-1)), stone: Math.floor(15*Math.pow(scalingValue,lvl-1)), iron: 0};
@@ -78,7 +78,7 @@ function verifyResources(ava, cost, doc){
 		ava.wood-=cost.wood;
 		ava.stone-=cost.stone;
 		ava.iron-=cost.iron;
-		doc.score += cost.wood + cost.stone + cost.iron;
+		doc.score += (cost.wood + cost.stone + cost.iron)/100;
 		return true;
 	}
 	else return false;
@@ -105,9 +105,9 @@ exports.upgradeResBuilding = function(req,res){
 					doc.resources.cereal = c;
 				}
 				else doc.cerealAvailable -= (calcCerealCost(id,element.level) - calcCerealCost(id,element.level-1));
-				console.log(doc.resourcesPerHour);
+				//console.log(doc.resourcesPerHour);
 				//doc.resourcesPerHour = applyProdFactor(doc.resourcesPerHour,doc.resources.cereal,doc.cerealAvailable);
-				console.log(doc.resourcesPerHour);
+				//console.log(doc.resourcesPerHour);
 				doc.buildings[listPos] = element;
 				doc.markModified('res');
 				doc.save(function(err){
