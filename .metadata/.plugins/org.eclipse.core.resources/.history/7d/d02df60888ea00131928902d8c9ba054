@@ -1,0 +1,9 @@
+var mongoose = require('mongoose');
+var player = require('../models/player').player;
+var gameRouter = require('../routes/game');
+
+exports.attack = function(req,res){
+	player.findOne({name:req.session.name}, function(err, doc, player){
+
+	});
+}

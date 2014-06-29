@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;TFGProject/node_modules/socket.io&apos;" deleteContents="false" description="Delete resource &apos;TFGProject/node_modules/socket.io&apos;" element1="/TFGProject/node_modules/socket.io" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1401308409686"/>
+</session>
